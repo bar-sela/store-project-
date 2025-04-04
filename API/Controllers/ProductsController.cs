@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic; // Needed for List<T>
-using API.Data; // Ensure this namespace contains StoreContext
+using API.Data;
+using Microsoft.EntityFrameworkCore; // Ensure this namespace contains StoreContext
 
 
 namespace API.Controllers
@@ -17,13 +18,15 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Product>> GetProducts()
+        public async Task<ActionResult<List<Product>>> GetProducts()
         {
-           if (_storeContext.Product == null)  // object of type DbSet<Product>
+            if (_storeContext.Product == null) // בדיקה האם ה-DbSet<Product> קיים
                 return NotFound("Products not found.");
 
-            var products = _storeContext.Product.ToList(); // returns an empty list of their are no rows in products table
-            products.ForEach(x => Console.WriteLine(x.Name));
+            var products = await _storeContext.Product.ToListAsync(); // קריאה אסינכרונית למסד הנתונים
+
+            products.ForEach(x => Console.WriteLine(x.Name)); // הדפסת שמות המוצרים לקונסול
+            
             return products;
         }
 
