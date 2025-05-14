@@ -38,7 +38,7 @@ public class DBinitlaizer
                         Price = 2999,
                         Type = "צ'לסי",
                         Brand = "יונייטד",
-                        PictureUrl = "placeholder.jpg",
+                        PictureUrl = "boot-ang1.png",
                         QuantityInStock = 100
                     },
                         new()
@@ -48,7 +48,7 @@ public class DBinitlaizer
                         Price = 2999,
                         Type = "צ'לסי",
                         Brand = "יונייטד",
-                        PictureUrl = "placeholder.jpg",
+                        PictureUrl = "boot-ang2.png",
                         QuantityInStock = 100
                     }
 

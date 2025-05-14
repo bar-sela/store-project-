@@ -21,6 +21,7 @@ builder.Services.AddDbContext<StoreContext>(opt=>
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+    builder.Services.AddCors();
 
 var app = builder.Build();
 // builds the application =  all configurations, controllers, and middleware .
@@ -31,6 +32,11 @@ app.MapControllers();
 "Automatically create routes based on what is defined in the controllers using [Route]."
 "When someone sends a request to a specific route, direct it to the appropriate action in the corresponding controller."
 */
+
+//access-control-allow-origin:https://localhost:5173
+app.UseCors(opt => {
+    opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().WithOrigins("https://localhost:5173"); // after that 
+});
 DBinitlaizer.InitDb(app);   
 
 app.Run(); ///  server starts running and begins accepting HTTP requests
