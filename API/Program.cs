@@ -16,9 +16,10 @@ architecture or API, but only the controllers part.
 
 
 
-builder.Services.AddDbContext<StoreContext>(opt=> 
+builder.Services.AddDbContext<StoreContext>(opt=>
 {
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+
 });
 
     builder.Services.AddCors();
